@@ -6,7 +6,7 @@
 The OpenDXL Cuckoo Reporting Module provides a reporting module for [Cuckoo Sandbox](https://cuckoosandbox.org/).
 When this module is installed in a Cuckoo environment, it will broadcast Cuckoo report analyses as DXL events on a
 DXL Fabric. This module is for Cuckoo Sandbox 2.0.5 or greater. Please see the
-[Cuckoo Reporting Modules](https://cuckoo.sh/docs/customization/reporting.html) documentation for information on
+[Cuckoo Reporting Modules](https://cuckoo.readthedocs.io/en/latest/customization/reporting/) documentation for information on
 Cuckoo Reporting Modules.
 
 ## Documentation
