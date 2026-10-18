@@ -196,7 +196,7 @@ class DXLEventReporting(Report):
             if self.options.get("send_compressed_event", False):
                 # Convert results to JSON string
                 report_json_string = json.dumps(results, default=serialize_datetime_objects,
-                                                indent=self.options.indent)
+                                                indent=self.options.get("indent"))
 
                 # Compress the Cuckoo results
                 zlib_obj = zlib.compressobj(-1, zlib.DEFLATED, 31)
