@@ -38,6 +38,7 @@ For more information on the OpenDXL Python Client please see https://github.com/
 
 import calendar
 import datetime
+from functools import reduce
 import json
 import logging
 import re
@@ -195,12 +196,13 @@ class DXLEventReporting(Report):
             if self.options.get("send_compressed_event", False):
                 # Convert results to JSON string
                 report_json_string = json.dumps(results, default=serialize_datetime_objects,
-                                                indent=self.options.indent,
-                                                encoding="UTF-8")
+                                                indent=self.options.indent)
 
                 # Compress the Cuckoo results
                 zlib_obj = zlib.compressobj(-1, zlib.DEFLATED, 31)
-                compressed_report_data = zlib_obj.compress(report_json_string) + zlib_obj.flush()
+                report_bytes = report_json_string.encode("utf-8") \
+                    if isinstance(report_json_string, str) else report_json_string
+                compressed_report_data = zlib_obj.compress(report_bytes) + zlib_obj.flush()
 
                 # Create the DXL Event for zipped data
                 zipped_event = Event(CUCKOO_ZIP_EVENT_TOPIC)
